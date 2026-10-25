@@ -280,9 +280,9 @@ bool ProtoPipe::Open(const char* theName)
     if(*theName!='/')
     {
 #ifdef __ANDROID__
-        strcpy(pipeName, "/data/local/tmp/");
+        strcpy(pipeName, "/data/local/var/run/");
 #else
-        strcpy(pipeName, "/tmp/");
+        strcpy(pipeName, "/var/run/");
 #endif // if/else __ANDROID__
     }
     strncat(pipeName, theName, PATH_MAX-strlen(pipeName));
@@ -338,9 +338,9 @@ void ProtoPipe::Unlink(const char* theName)
     if(*theName!='/')
     {
 #ifdef __ANDROID__
-        strcpy(pipeName, "/data/local/tmp/");
+        strcpy(pipeName, "/data/local/var/run/");
 #else
-        strcpy(pipeName, "/tmp/");
+        strcpy(pipeName, "/var/run/");
 #endif // if/else __ANDROID__
     }
     strncat(pipeName, theName, PATH_MAX - strlen(pipeName));
@@ -416,9 +416,9 @@ bool ProtoPipe::Connect(const char* theName)
     {
         char pipeName[PATH_MAX];
 #ifdef __ANDROID__
-        strcpy(pipeName, "/data/local/tmp/protoSocketXXXXXX");
+        strcpy(pipeName, "/data/local/var/run/protoSocketXXXXXX");
 #else
-        strcpy(pipeName, "/tmp/protoSocketXXXXXX");
+        strcpy(pipeName, "/var/run/protoSocketXXXXXX");
 #endif // if/else __ANDROID__
         int fd = mkstemp(pipeName); 
         if (fd < 0)
@@ -462,9 +462,9 @@ bool ProtoPipe::Connect(const char* theName)
     if(*theName!='/')
     {
 #ifdef __ANDROID__
-        strcpy(serverAddr.sun_path, "/data/local/tmp/");
+        strcpy(serverAddr.sun_path, "/data/local/var/run/");
 #else
-        strcpy(serverAddr.sun_path, "/tmp/");
+        strcpy(serverAddr.sun_path, "/var/run/");
 #endif // if/else __ANDROID__
     }
     size_t pathMax = sizeof(serverAddr.sun_path);
@@ -519,9 +519,9 @@ bool ProtoPipe::SendTo(const char* buffer, unsigned int& numBytes, const char* d
     if ('/' != *dstName)
     {
 #ifdef __ANDROID__
-        strcpy(dstAddr.sun_path, "/data/local/tmp/");
+        strcpy(dstAddr.sun_path, "/data/local/var/run/");
 #else
-        strcpy(dstAddr.sun_path, "/tmp/");
+        strcpy(dstAddr.sun_path, "/var/run/");
 #endif // if/else __ANDROID__
         strncat(dstAddr.sun_path, dstName, sizeof(dstAddr.sun_path) - strlen(dstAddr.sun_path) - 1);
     }

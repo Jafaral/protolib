@@ -96,14 +96,14 @@ const ProtoSocket::Handle ProtoSocket::INVALID_HANDLE = -1;
 ProtoSocket::IPv6SupportStatus ProtoSocket::ipv6_support_status = IPV6_UNKNOWN;
 
 ProtoSocket::ProtoSocket(ProtoSocket::Protocol theProtocol)
-    : domain(IPv4), protocol(theProtocol), raw_protocol(RAW), state(CLOSED), 
+    : domain(IPv4), protocol(theProtocol), raw_protocol(RAW), state(CLOSED),
       handle(INVALID_HANDLE), port(-1), tos(0), ecn_capable(false), ip_recvdstaddr(false),
 #ifdef HAVE_IPV6
       flow_label(0),
 #endif // HAVE_IPV6
       notifier(NULL), notify_output(false), notify_input(true), notify_exception(false),
 #ifdef WIN32
-      input_event_handle(NULL), output_event_handle(NULL), 
+      input_event_handle(NULL), output_event_handle(NULL),
       input_ready(false), output_ready(false), closing(false),
 #endif // WIN32
       listener(NULL), user_data(NULL)
@@ -260,7 +260,7 @@ ProtoAddress::Type ProtoSocket::GetAddressType()
 #endif // SIMULATE
         default:
             return ProtoAddress::INVALID; 
-    }  
+    }
 }  // end ProtoSocket::GetAddressType()
 
 /**
